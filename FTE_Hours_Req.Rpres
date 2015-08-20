@@ -1,0 +1,63 @@
+Super Size Regional Staff Planning
+========================================================
+![Picture of Fries](https://hummusismyhomegirl.files.wordpress.com/2013/09/mcdonalds-fries.jpg?w=300&h=200&crop=1)
+
+author: Robin Yeldell  
+date: August 2015
+
+Introduction
+========================================================
+
+The Super Size restaurant franchise continues to grow in stores, satisfied customers, and hard working employees.
+
+We are enhancing our annual planning process with better tools to plan business requirements to continue our march to dominate the fast food marketplace. Our first tool rollout is for staff planning.
+
+With improved staff planning, we will
+- Improve customer experience
+- Provide managers and supervisors with clear objectives for hiring
+- Reduce employee turnover with more predictable hours and less mandatory overtime
+
+Impact on Customer Satisfaction
+========================================================
+When comparing customer satisfaction results with same-period overtime utilization, there is a clear correlation between a properly staffed restaurant and a happy customer (see chart). With lower overtime, you  
+- have less stressed workers,
+- fewer mistakes
+- managers staying focused on positive change vs. remedial efforts  
+```{r, echo=FALSE,fig.height = 4}
+#opts_chunk$set(out.height='20px')
+CustomerSatisfaction<-c(sample(0:50, 1000,replace=TRUE)
+             ,sample(30:70, 1000,replace=TRUE)
+             ,sample(50:100, 1000,replace=TRUE)
+             ,sample(90:100, 1000,replace=TRUE)
+)
+#summary(custsatis)
+OverTimeLevel<-c(sample(30:60, 1000,replace=TRUE)
+           ,sample(10:50, 1000,replace=TRUE)
+           ,sample(0:20, 1000,replace=TRUE)
+           ,sample(0:5, 1000,replace=TRUE)
+)
+#otlevel
+df<-data.frame(CustomerSatisfaction,OverTimeLevel)
+reg2 <- lm(OverTimeLevel~CustomerSatisfaction)
+par(cex=.8)
+plot(df,ylim = rev(range(df$OverTimeLevel)))
+abline(reg2,lwd=4, col = "red")
+
+```
+
+Impact on Employee Satisfaction
+========================================================
+Comparing average overtime usage with employee satisfaction over the prior year, there is a correlation. This is also born out in the employee comments in the survey as well as field visits by regional managers. It impacts managers and frontline employees alike.  
+
+| Metric| East | North   | West   | South  |
+|------:|:-----|---------|:------:|:------:|
+| Average OT%  |  4  |    12   |    24  |    34  |
+| Employee Satisfaction  |  87 |   80   |   72  |   51 |  
+
+
+
+Next Steps
+========================================================
+A new application has been developed to help with staff planning. That application has the number of work hours required based on past results and adjustments based on franchise-wide goals. With the application you can model the number employees required by month and role.
+
+To start the application, go to [Super Size Staff Modeling App](https://ryeldell.shinyapps.io/FTE_Forecaster).
